@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <style>
+        body{
+            background-color: rgb(50, 50, 60);
+        }
+        h1{
+            text-align: center;
+            font-size: 75px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(143, 136, 136);
+            width:600px;
+            border: 5px solid black;
+            margin-left: 463px;
+            
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-gap: 30px ;
+            margin-left:580px;
+        }
+        .container2{
+            display:grid;
+            grid-template-columns: 100px 100px;
+            grid-gap:30px;
+
+        }
+        .items{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(143, 136, 136);
+            margin: 0px;
+            border: 5px solid black;
+            color:black;
+            font-size:5em;
+            text-align:center;
+        }
+        .button{
+            width:200px;
+            height:100px;
+            background-color: rgb(143, 136, 136);
+            border: 5px solid black;
+            margin-left: 793px;
+        }
+        .count{
+            background-color: rgb(143, 136, 136);
+            height:100px;
+            width:200px;
+            border: 5px solid black;
+            margin-left: 400px;
+        }
+        .ctext{
+            font-weight:bold;
+            font-size: 1.5em;
+            text-align:center;
+            
+
+        }
+        p{
+            font-weight:bold;
+            font-size: 2em;
+            line-height: 25px;
+            text-align:center;
+        }
+        h4{
+            text-align:center;
+            font-size:1.5em;
+            font-weight:bold;
+            background-color: rgb(143, 136, 136);
+            width:200px;
+            height:50px;
+            border: 5px solid black;
+            margin-left: 663px;
+        }
+        #ctext0{
+            text-decoration: underline;
+        }
+        .items, .button, .count, h1, h4 {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .items:hover {
+            background-color: rgb(170, 170, 180);
+            transform: scale(1.05);
+        }
+
+        .button:hover {
+            background-color: rgb(170, 170, 180);
+            transform: scale(1.05);
+        }
+
+        .count:hover {
+            background-color: rgb(160, 160, 170);
+            transform: scale(1.02);
+        }
+
+        h1:hover {
+            background-color: rgb(160, 160, 160);
+            transform: scale(1.02);
+        }
+
+        h4:hover {
+            background-color: rgb(160, 160, 160);
+            transform: scale(1.02);
+        }
+        .items:active,.button:active {
+            transform: scale(0.95);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .items,.button {
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        
+        @media screen and (max-width: 1400px) {
+            h1 {
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+                max-width: 600px;
+                font-size: 60px;
+            }
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+            }
+            .container2 {
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+            }
+            .button {
+                margin-left: 0;
+            }
+            .count {
+                margin-left: 0;
+            }
+            h4 {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+                width: 90%;
+            }
+            .container {
+                grid-template-columns: 80px 80px 80px;
+                grid-gap: 20px;
+            }
+            .items {
+                width: 80px;
+                height: 80px;
+                font-size: 4em;
+            }
+            .container2 {
+                grid-template-columns: 150px 150px;
+                grid-gap: 20px;
+            }
+            .button, .count {
+                width: 150px;
+                height: 80px;
+            }
+            p {
+                font-size: 1.5em;
+                line-height: 20px;
+            }
+            .ctext {
+                font-size: 1.2em;
+            }
+            h4 {
+            width: 180px;
+            height: 45px;
+            font-size: 1.2em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 30px;
+                width: 95%;
+            }
+            .container {
+                grid-template-columns: 60px 60px 60px;
+                grid-gap: 15px;
+            }
+            .items {
+                width: 60px;
+                height: 60px;
+                font-size: 3em;
+            }
+            .container2 {
+                grid-template-columns: 120px 120px;
+                grid-gap: 15px;
+            }
+            .button, .count {
+                width: 120px;
+                height: 70px;
+            }
+            p {
+                font-size: 1.2em;
+                line-height: 18px;
+            }
+            .ctext {
+                font-size: 1em;
+            }
+            h4 {
+                width: 150px;
+                height: 40px;
+                font-size: 1em;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            h1 {
+                font-size: 25px;
+            }
+        .container {
+                grid-template-columns: 50px 50px 50px;
+                grid-gap: 10px;
+            }
+            .items {
+            width: 50px;
+            height: 50px;
+            font-size: 2.5em;
+            }
+            .container2 {
+                grid-template-columns: 100px 100px;
+                grid-gap: 10px;
+            }
+            .button, .count {
+                width: 100px;
+                height: 60px;
+            }
+            p {
+                font-size: 1em;
+                line-height: 15px;
+            }
+            .ctext {
+                font-size: 0.9em;
+            }
+            h4 {
+            width: 130px;
+            height: 35px;
+            font-size: 0.9em;
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe Game</h1>
+    <h4>Player 1(X)'s turn</h4>
+    <br>
+    <div class="container">
+        <div class="items" id="box1"> </div>
+        <div class="items" id="box2"> </div>
+        <div class="items" id="box3"> </div>
+        <div class="items" id="box4"> </div>
+        <div class="items" id="box5"> </div>
+        <div class="items" id="box6"> </div>
+        <div class="items" id="box7"> </div>
+        <div class="items" id="box8"> </div>
+        <div class="items" id="box9"> </div>
+    </div>
+    <br>
+    <br>
+    <div class="container2">
+        <div class="button"><p>Restart Game</p></div>
+        <div class="count">
+        <!--<div class="ctext" id="ctext0">Win Counter</div>-->
+        <div class="ctext" id="ctext1">Player1 Wins: 0</div>
+        <div class="ctext" id="ctext2">Player2 Wins: 0</div>
+        <div class="ctext" id="ctext3">Draws: 0</div>
+        </div>
+    </div>   
+    
+    
+    <script>
+        let draw=0;
+        let win1=0;
+        let win2=0;
+        let ctext3=document.querySelector("#ctext3");
+        let ctext1=document.querySelector("#ctext1");
+        let ctext2=document.querySelector("#ctext2");
+         let a=0;
+         let restart=document.querySelector(".button");
+         let h4=document.querySelector("h4");
+         let box1=document.querySelector("#box1");
+         let box2=document.querySelector("#box2");
+         let box3=document.querySelector("#box3");
+         let box4=document.querySelector("#box4");
+         let box5=document.querySelector("#box5");
+         let box6=document.querySelector("#box6");
+         let box7=document.querySelector("#box7");
+         let box8=document.querySelector("#box8");
+         let box9=document.querySelector("#box9");
+         const symbol1='X';
+         const symbol2='O';
+         let mainsymbol = symbol1;
+         let c1=0;
+         let c2=0;
+         let c3=0;
+         let c4=0;
+         let c5=0;
+         let c6=0;
+         let c7=0;
+         let c8=0;
+         let c9=0;
+         let value1=3;
+         let value2=4;
+         let value3=5;
+         let value4=6;
+         let value5=7;
+         let value6=8;
+         let value7=9;
+         let value8=10;
+         let value9=11;
+        
+
+
+         box1.onclick=()=>{
+            c1++;
+            if (c1==1){
+            box1.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value1=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value1=2;
+            }
+               a++;
+         checkwin();
+         }
+          
+        }
+        box2.onclick=()=>{
+            c2++;
+            if (c2==1){
+            box2.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value2=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value2=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box3.onclick=()=>{
+            c3++;
+            if (c3==1){
+            box3.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value3=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value3=2;
+            } a++;
+         checkwin();
+         }
+            
+        }
+        box4.onclick=()=>{
+            c4++;
+            if (c4==1){
+            box4.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value4=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value4=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box5.onclick=()=>{
+            c5++;
+            if (c5==1){
+            box5.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value5=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value5=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box6.onclick=()=>{
+            c6++;
+            if (c6==1){
+            box6.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value6=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value6=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box7.onclick=()=>{
+            c7++;
+            if (c7==1){
+            box7.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value7=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value7=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box8.onclick=()=>{
+            c8++;
+            if (c8==1){
+            box8.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value8=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value8=2;
+            }a++;
+         checkwin();
+         }
+             
+        }
+        box9.onclick=()=>{
+            c9++;
+            if (c9==1){
+            box9.innerText=mainsymbol;
+            if (mainsymbol==symbol1){
+                mainsymbol=symbol2;
+                value9=1;
+            }
+            else{
+                mainsymbol=symbol1;
+                value9=2;
+            } a++;
+         checkwin();
+         }
+            
+        }
+        
+        const win = () =>{
+            c1=2;
+            c2=2;
+            c3=2;
+            c4=2;
+            c5=2;
+            c6=2;
+            c7=2;
+            c8=2;
+            c9=2;
+            if (mainsymbol==symbol1){
+                alert("Game Ended: Player 2(O) Wins");
+                win2++;
+                ctext2.innerText=`Player 2 Wins: ${win2}`;
+            }
+            else{
+                alert("Game Ended: Player 1(X) Wins");
+                win1++;
+                ctext1.innerText=`Player 1 Wins: ${win1}`;
+            }
+            return true;
+
+        }
+        const checkwin = () => {
+            if (c1 == 2) return;
+
+        
+        if (a%2==0){
+           h4.innerText="Player 1(X)'s turn";
+        }
+        else{
+            h4.innerText="Player 2(O)'s turn";
+        }
+        
+        if (value1==value2&&value2==value3){
+             return win();
+        }
+        if (value4==value5&&value5==value6){
+             return win();
+        }
+        if (value7==value8&&value8==value9){
+             return win();
+        }
+        if (value1==value4&&value4==value7){
+            return win();
+        }
+        if (value2==value5&&value5==value8){
+            return win();
+        }
+        if (value3==value6&&value6==value9){
+            return win();
+        }
+        if (value3==value5&&value5==value7){
+            return win();
+        }
+        if (value1==value5&&value5==value9){
+            return win();
+        }
+        if (a === 9 && c1 !== 2){
+    alert("Game Draw!");
+    draw++;
+    c1 = c2 = c3 = c4 = c5 = c6 = c7 = c8 = c9 = 2;
+    ctext3.innerText=`Draws: ${draw} `;
+    return;
+}
+
+    }
+    restart.onclick=()=>{
+         a=0;
+         mainsymbol = symbol1;
+         c1=0;
+         c2=0;
+         c3=0;
+         c4=0;
+         c5=0;
+         c6=0;
+         c7=0;
+         c8=0;
+         c9=0;
+         value1=3;
+         value2=4;
+         value3=5;
+         value4=6;
+         value5=7;
+         value6=8;
+         value7=9;
+         value8=10;
+         value9=11;
+         box1.innerText="";
+         box2.innerText="";
+         box3.innerText="";
+         box4.innerText="";
+         box5.innerText="";
+         box6.innerText="";
+         box7.innerText="";
+         box8.innerText="";
+         box9.innerText="";
+         h4.innerText="Player 1(X)'s turn";
+
+    }
+
+
+
+    </script>   
+</body>
+</html>
